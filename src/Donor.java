@@ -12,7 +12,6 @@ public class Donor {
 	public String blood_type;
 	public int YOB; // year of birth
 	public String phone;
-	public List<Record> records;
 	public String cityName;
 
 	public Donor(String username, String password, String gender, String blood_type, int YOB, String phone){
@@ -28,6 +27,7 @@ public class Donor {
 
 	public void addRecord(Record r){
 		records.add(r);
+		Util.records.add(r);
 	}
 
 	public void sortRecordByUpdateDate(){
@@ -52,7 +52,7 @@ public class Donor {
 			case 3: three --;
 			Collections.swap(this.records,next, three);
 			break;
-			case 0: Collections.swap(this.records,next, one);
+			default: Collections.swap(this.records,next, one);
 			next ++;
 			one ++;
 			}
@@ -71,9 +71,9 @@ public class Donor {
 			}
 		}
 	}
-	
-	public String getDetails() { 
+
+	public String getDetails() {
 		return Util.toHTML(("Username: " + this.username + "\nGender: " + this.gender + "\nBlood Type: " + this.blood_type
-				+ "\nYear of birth: " + this.YOB +"\nPhone: " + this.phone + "\nCity Name: " + this.cityName)); 
+				+ "\nYear of birth: " + this.YOB +"\nPhone: " + this.phone + "\nCity Name: " + this.cityName));
 	}
 }

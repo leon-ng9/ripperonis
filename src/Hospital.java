@@ -7,12 +7,10 @@ import java.util.List;
 public class Hospital {
 	public String name;
 	public List<Blood> bloods;
-	public List<Record> records;
 
 	public Hospital(String name){
 		this.name = name;
 		this.bloods = new ArrayList<Blood>();
-		this.records = new ArrayList<Record>();
 		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
 		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
 		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
@@ -20,7 +18,7 @@ public class Hospital {
 	}
 
 	public void add(Record r){
-		records.add(r);
+		r.state = 1;
 	}
 
 	public void update(Record r){
@@ -33,7 +31,7 @@ public class Hospital {
 	}
 
 	public void remove(Record r){
-		this.records.remove(r);
+		r.state = -1;
 	}
 
 	public ArrayList<Blood> getAvailableBlood(){
@@ -47,7 +45,13 @@ public class Hospital {
 	}
 
 	public List<Record> getPendingRecords(){
-		return records;
+		ArrayList<Record> result = new ArrayList<>();
+    for(Record r: Util.records){
+      if(r.state == 1){
+        result.add(r);
+      }
+    }
+    return result;
 	}
 
 	public Hashtable<String, Integer> summary(){
