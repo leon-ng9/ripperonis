@@ -21,11 +21,11 @@ public class Hospital {
 
 	public void add(Record r){
 		records.add(r);
-		r.blood.hospital = this;
 	}
 
 	public void update(Record r){
 		if(records.remove(r)){
+			r.blood.hospital = this;
 			r.state = 2;
 			r.updateDate = (int) System.currentTimeMillis();
 			bloods.add(r.blood);
