@@ -5,6 +5,7 @@ import java.util.Collections;
 import javax.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class DonorScreen extends JPanel {
 	private MainWindow mw;
 	private Donor donor;
@@ -18,8 +19,20 @@ public class DonorScreen extends JPanel {
 		initRightScreen();
 	}
 	
+	/**
+	 * Paints a background image for the OptionsScreen
+	 */
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image background = (new ImageIcon("resources/bg.jpg")).getImage();
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+		System.out.println(getWidth());
+	}
+	
 	private void initLeftScreen() {
 		JPanel leftScreen = new JPanel(new GridBagLayout());
+		leftScreen.setOpaque(false);
 		add(leftScreen);
 
 		JButton sort = new JButton("Sort");
@@ -68,6 +81,7 @@ public class DonorScreen extends JPanel {
 
 	private void initRightScreen() {
 		JPanel rightScreen = new JPanel(new GridBagLayout());
+		rightScreen.setOpaque(false);
 		add(rightScreen);
 
 		GridBagConstraints gbc = new GridBagConstraints();

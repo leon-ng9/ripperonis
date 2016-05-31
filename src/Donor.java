@@ -38,37 +38,37 @@ public class Donor {
 		});
 
 	}
-	
+
 	public void groupByStatus(){
-	    int one = 0;
-	    int three = this.records.size();
-	    int next = 0;
-	    
-	    while(next != three){
-	      switch(this.records.get(next).state){
-	        case 1: next ++;break;
-	        case 2: next ++; break;
-	        case 3: three --;
-	        		Collections.swap(this.records,next, three);
-	        		break;
-	        case 0: Collections.swap(this.records,next, one);
-	        		next ++;
-	        		one ++;
-	      }
-	    }
-	    
-	    next = one;
-	    int two = one;
-	    
-	    while(next != three){
-	      switch(this.records.get(next).state){
-	        case 2: next ++;break;
-	        case 1: Collections.swap(this.records,next, two);
-	        		next ++;
-	        		two ++;
-	        		break;
-	      }
-	    }
-	    
-	  }
+		int one = 0;
+		int three = this.records.size();
+		int next = 0;
+
+		while(next != three){
+			switch(this.records.get(next).state){
+			case 1: next ++;break;
+			case 2: next ++; break;
+			case 3: three --;
+			Collections.swap(this.records,next, three);
+			break;
+			case 0: Collections.swap(this.records,next, one);
+			next ++;
+			one ++;
+			}
+		}
+
+		next = one;
+		int two = one;
+
+		while(next != three){
+			switch(this.records.get(next).state){
+			case 2: next ++;break;
+			case 1: Collections.swap(this.records,next, two);
+			next ++;
+			two ++;
+			break;
+			}
+		}
+
+	}
 }

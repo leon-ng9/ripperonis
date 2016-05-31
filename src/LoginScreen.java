@@ -30,7 +30,7 @@ public class LoginScreen extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image background = (new ImageIcon("resources/gameScreen_bg.jpg")).getImage();
+		Image background = (new ImageIcon("resources/bg.jpg")).getImage();
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 

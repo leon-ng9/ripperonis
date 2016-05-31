@@ -18,7 +18,7 @@ public class MainWindow extends JFrame {
 		add(screens);
 
 		// configure the main window
-		setSize(new Dimension(1920, 1080));
+		setSize(new Dimension(1600, 900));
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
