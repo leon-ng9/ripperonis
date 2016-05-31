@@ -40,16 +40,21 @@ public class LoginScreen extends JPanel {
 	 */
 	private void initLoginPanel() {
 
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		
 		JPanel username = new JPanel();
 		username.add(new JLabel("Username: "));
-		username.add(new JTextField());
-		add(username);
+		username.add(new JTextField("", 10));
+		add(username, gbc);
 
+		gbc.gridy = 1;
 		JPanel password = new JPanel();
 		password.add(new JLabel("Password: "));
-		password.add(new JPasswordField());
-		add(password);
+		password.add(new JPasswordField("", 10));
+		add(password, gbc);
 
+		gbc.gridy = 2;
 		// user type
 		Vector<String> userType = new Vector<String>();
 
@@ -72,10 +77,13 @@ public class LoginScreen extends JPanel {
 			}
 		});
 
-		add(userTypeCB);
+		add(userTypeCB, gbc);
 	}
 
 	private void initConfirmation() {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 3;
+		
 		JButton confirm = new JButton("Login");
 		confirm.addActionListener(new ActionListener(){
 			@Override
@@ -89,7 +97,7 @@ public class LoginScreen extends JPanel {
 				}
 			}
 		});
-		add(confirm);
+		add(confirm, gbc);
 	}
 }
 
