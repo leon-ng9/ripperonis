@@ -13,7 +13,7 @@ public class DonorScreen extends JPanel {
 	public DonorScreen(MainWindow mw, Donor donor) {
 		this.mw = mw;
 		this.donor = donor;
-		this.setLayout(new GridLayout(2, 0)); // 2 columns 
+		this.setLayout(new GridLayout(0, 2)); // 2 columns 
 
 		initLeftScreen();
 		initRightScreen();
@@ -27,9 +27,8 @@ public class DonorScreen extends JPanel {
 		super.paintComponent(g);
 		Image background = (new ImageIcon("resources/bg.jpg")).getImage();
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
-		System.out.println(getWidth());
 	}
-	
+
 	private void initLeftScreen() {
 		JPanel leftScreen = new JPanel(new GridBagLayout());
 		leftScreen.setOpaque(false);
@@ -42,7 +41,7 @@ public class DonorScreen extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				donor.sortRecordByUpdateDate();
 				DonorScreen.this.mw.switchToDonor(DonorScreen.this.donor);
-				
+
 			}
 		});
 		leftScreen.add(sort);
@@ -86,27 +85,21 @@ public class DonorScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.gridy = 1;
-		rightScreen.add(new JLabel("Username: " + donor.username.toString()),gbc);
-		gbc.gridy = 2;
-		rightScreen.add(new JLabel("Gender: " + donor.gender.toString()),gbc);
-		gbc.gridy = 3;
-		rightScreen.add(new JLabel("Blood Type: " + donor.blood_type.toString()),gbc);
-		gbc.gridy = 4;
-		rightScreen.add(new JLabel("Year of Birth: " + donor.YOB),gbc);
-		gbc.gridy = 5;
-		rightScreen.add(new JLabel("Phone: " + donor.username.toString()),gbc);
-
 		// apply to donate
-		gbc.gridy = 6;
-		rightScreen.add(new JLabel("Apply to donate"),gbc);
-		gbc.gridy = 7;
-		final JTextField cityName = new JTextField("Enter city name: ");
-				rightScreen.add(cityName);
-		gbc.gridy = 8;
-
+		gbc.gridy = 0;
+		JLabel donate = new JLabel("Apply to donate");
+		donate.setForeground(Color.WHITE);
+		rightScreen.add(donate,gbc);
+		
+		gbc.gridy = 1;
+		JPanel donationApplication = new JPanel();
+		donationApplication.add(new JLabel("Enter city name: "));
+		final JTextField cityName = new JTextField("", 10);
+		donationApplication.add(cityName);
+		rightScreen.add(donationApplication, gbc);
+		
+		gbc.gridy = 2;
 		JButton update = new JButton("Update");
-
 		update.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -115,6 +108,17 @@ public class DonorScreen extends JPanel {
 				donor.addRecord(record);
 			}
 		});
-		rightScreen.add(update);
+		rightScreen.add(update, gbc);
+		
+		gbc.gridy = 3;
+		JLabel details = new JLabel(this.donor.getDetails());
+		details.setForeground(Color.WHITE);
+		rightScreen.add(details, gbc);
+
+		
+		
+		
+		
+		
 	}
 }

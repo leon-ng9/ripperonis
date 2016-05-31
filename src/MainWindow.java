@@ -27,10 +27,6 @@ public class MainWindow extends JFrame {
 		screens.add(login, "Login");
 
 		// hospital screen
-		//HospitalScreen hospital = new HospitalScreen(this);
-		//screens.add(hospital, "Hospital");
-
-		// hospital screen
 		//BatmobileScreen batmobile = new BatmobileScreen(this);
 		//screens.add(batmobile, "Batmobile");
 
@@ -50,7 +46,8 @@ public class MainWindow extends JFrame {
 		cl.show(screens, "Login");
 	}
 
-	public void switchToHospital() {
+	public void switchToHospital(Hospital hospital) {
+		screens.add(new HospitalScreen(this, hospital), "Hospital");
 		CardLayout cl = (CardLayout) screens.getLayout();
 		cl.show(screens, "Hospital");
 	}

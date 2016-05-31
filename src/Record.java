@@ -14,7 +14,11 @@ public class Record {
 	public Record(Donor donor, String cityName){
 		this.cityname = cityName;
 		this.donor = donor;
-		this.creationDate = this.updateDate = 20160601;
+		this.creationDate = this.updateDate = (int) System.currentTimeMillis();
 		this.state = 0;
+	}
+	
+	public String getDetails() {
+		return Util.toHTML("City: " + cityname + "\nCreation date: " + creationDate + "\nUpdate date: " + updateDate);
 	}
 }

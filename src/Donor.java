@@ -3,6 +3,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.swing.JLabel;
+
 public class Donor {
 	public String username;
 	public String password;
@@ -36,7 +38,6 @@ public class Donor {
 				return i.compareTo(j);
 			}
 		});
-
 	}
 
 	public void groupByStatus(){
@@ -69,6 +70,10 @@ public class Donor {
 			break;
 			}
 		}
-
+	}
+	
+	public String getDetails() { 
+		return Util.toHTML(("Username: " + this.username + "\nGender: " + this.gender + "\nBlood Type: " + this.blood_type
+				+ "\nYear of birth: " + this.YOB +"\nPhone: " + this.phone + "\nCity Name: " + this.cityName)); 
 	}
 }

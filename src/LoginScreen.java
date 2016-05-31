@@ -91,7 +91,7 @@ public class LoginScreen extends JPanel {
 				if (targetScreen == "Donor") {
 					LoginScreen.this.mainWindow.switchToDonor(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"));
 				} else if (targetScreen == "Hospital") {
-					LoginScreen.this.mainWindow.switchToHospital();
+					LoginScreen.this.mainWindow.switchToHospital(new Hospital("London Hospital"));
 				} else if (targetScreen == "Batmobile") {
 					LoginScreen.this.mainWindow.switchToBatmobile();
 				}
