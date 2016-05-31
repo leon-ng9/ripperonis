@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
+
+import org.omg.CORBA.Request;
 
 public class Batmobile {
   public String name;
@@ -10,7 +15,7 @@ public class Batmobile {
   public Hashtable<Request, String> closestRequest(){
     Map map = Util.map;
     Hashtable<Request, String> preresult = map.closestCity(cityName, 5);
-    return prerresult;
+    return preresult;
   }
 
   public void add(Record r){
