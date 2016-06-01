@@ -101,8 +101,8 @@ public class Hospital {
 	public void sortRecordByUsedByDate(){
 		Collections.sort(bloods, new Comparator<Blood>() {
 			public int compare(Blood self, Blood other) {
-				Integer i = self.used_by_date;
-				Integer j = other.used_by_date;
+				Long i = self.used_by_date;
+				Long j = other.used_by_date;
 				return i.compareTo(j);
 			}
 		});

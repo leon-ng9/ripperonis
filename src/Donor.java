@@ -34,8 +34,8 @@ public class Donor {
 	public void sortRecordByUpdateDate(){
 		Collections.sort(records, new Comparator<Record>() {
 			public int compare(Record self, Record other) {
-				Integer i = self.updateDate;
-				Integer j = other.updateDate;
+				Long i = self.updateDate;
+				Long j = other.updateDate;
 				return i.compareTo(j);
 			}
 		});
