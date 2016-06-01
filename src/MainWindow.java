@@ -7,11 +7,6 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 
-	/**
-	 * Creates a JFrame that contains all the components of the game including
-	 * MenuScreen, GameScreen, TutorialScreen and OptionsScreen.
-	 * Initialized to display the MenuScreen first.
-	 */
 	public MainWindow() {
 		// login, donor, batmobile, hospital
 		screens = new JPanel(new CardLayout());

@@ -11,10 +11,6 @@ public class LoginScreen extends JPanel {
 	private MainWindow mainWindow;
 	private String targetScreen;
 
-	/**
-	 * Creates a OptionsScreen containing a resolution picker, controls remapper, difficulty picker and return button.
-	 * @param mainWindow The JFrame containing the OptionsScreen
-	 */
 	public LoginScreen (MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
 
@@ -25,9 +21,6 @@ public class LoginScreen extends JPanel {
 		initConfirmation();
 	}
 
-	/**
-	 * Paints a background image for the OptionsScreen
-	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -45,10 +38,6 @@ public class LoginScreen extends JPanel {
 		add(title, gbc);
 	}
 	
-	/**
-	 * Initializes a resolution drop-down menu. The menu contains standard resolutions
-	 * supported by the user's native screen resolution.
-	 */
 	private void initLoginPanel() {
 
 		GridBagConstraints gbc = new GridBagConstraints();

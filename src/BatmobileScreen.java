@@ -34,9 +34,6 @@ public class BatmobileScreen extends JPanel {
 		initRightScreen();
 	}
 
-	/**
-	 * Paints a background image for the OptionsScreen
-	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
