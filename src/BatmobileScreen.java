@@ -85,7 +85,7 @@ public class BatmobileScreen extends JPanel {
 		for (Record r : closestRequests.keySet()) {
 			JPanel request = new JPanel(new GridLayout(2, 0));
 			request.setOpaque(false);
-      
+
       JButton accept = new JButton("Accept");
       accept.addActionListener(new AddListener(r, mw, bm));
 			request.add(accept);
@@ -180,6 +180,7 @@ public class BatmobileScreen extends JPanel {
       this.r = r;
         this.bm = bm;
         this.mw = mw;
+        bm.cityName = r.cityname;
     }
 
     public void actionPerformed(ActionEvent e){

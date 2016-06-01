@@ -37,6 +37,7 @@ public class HospitalScreen extends JPanel {
 		bottomScreen.setOpaque(false);
 		add(bottomScreen, gbc);
 
+		// initTopBar();
 		initUpperLeftScreen();
 		initUpperRightScreen();
 		initLowerLeftScreen();
@@ -74,13 +75,14 @@ public class HospitalScreen extends JPanel {
 	}
 
 
+
 	private void initUpperLeftScreen() {
 		JPanel upperLeftScreen = new JPanel(new GridBagLayout());
 		upperLeftScreen.setOpaque(false);
 		JScrollPane scrollPane= new JScrollPane(upperLeftScreen);
 		scrollPane.setOpaque(false);
 		scrollPane.getViewport().setOpaque(false);
-		
+
 		bottomScreen.add(scrollPane);
 //		System.out.println(hospital.summary());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -91,17 +93,17 @@ public class HospitalScreen extends JPanel {
 			JPanel blood = new JPanel(new GridBagLayout());
 			blood.setOpaque(false);
 			upperLeftScreen.add(blood, gbc);
-			
+
 			GridBagConstraints gbcBlood = new GridBagConstraints();
 			gbcBlood.gridy = 0;
-			
+
 			JLabel bloodDetails = new JLabel(b.printDetails());
 			bloodDetails.setForeground(Color.WHITE);
 			blood.add(bloodDetails, gbcBlood);
-			
+
 			gbcBlood.gridy = 1;
 			blood.add(new JLabel(" "), gbcBlood);
-			
+
 			gbc.gridy += 1;
 		}
 	}
@@ -130,8 +132,10 @@ public class HospitalScreen extends JPanel {
 			JPanel confirmationPanel = new JPanel();
 			confirmationPanel.setOpaque(false);
 			JButton accept = new JButton("Accept");
+			accept.addActionListener(new AddListener(r,mainWindow,hospital));
 			confirmationPanel.add(accept);
 			JButton reject = new JButton("Reject");
+			reject.addActionListener(new RejectListener(r,mainWindow,hospital));
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
 
@@ -157,20 +161,55 @@ public class HospitalScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		JLabel title = new JLabel("Blood Summary");
 		title.setForeground(Color.WHITE);
 		lowerRightScreen.add(title, gbc);
-		
+
 		// calculate summary
 		Hashtable<String, Integer> summary = this.hospital.summary();
 		System.out.println(summary.size());
 		for (String s : summary.keySet()) {
 			gbc.gridy += 1;
-			
+
 			JLabel detail = new JLabel(s + ": " + summary.get(s));
 			detail.setForeground(Color.WHITE);
 			lowerRightScreen.add(detail, gbc);
 		}
+	}
+
+
+	private class AddListener implements ActionListener{
+		private Record r;
+		private MainWindow mw;
+		private Hospital bm;
+		public AddListener(Record r, MainWindow mw, Hospital bm){
+			this.r = r;
+				this.bm = bm;
+				this.mw = mw;
+		}
+
+		public void actionPerformed(ActionEvent e){
+			r.state = 2;
+			mw.switchToHospital(bm);
+		}
+
+	}
+
+	private class RejectListener implements ActionListener{
+		private Record r;
+		private MainWindow mw;
+		private Hospital bm;
+		public RejectListener(Record r, MainWindow mw, Hospital bm){
+			  this.r = r;
+				this.bm = bm;
+				this.mw = mw;
+		}
+
+		public void actionPerformed(ActionEvent e){
+			r.state = -1;
+			mw.switchToHospital(bm);
+		}
+
 	}
 }
