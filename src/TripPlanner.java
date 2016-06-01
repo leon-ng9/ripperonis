@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
@@ -73,7 +73,7 @@ public class TripPlanner {
 	public Hashtable<Record, String> closestCity(String from, int number, Hashtable<String, ArrayList< Record >> list) {
 		StateComparator stateComparator = new StateComparator();
 		PriorityQueue<State> toVisit = new PriorityQueue<State>(11, stateComparator);
-		HashMap<State, Integer> visited = new HashMap<State, Integer>();
+		HashSet<City> visited = new HashSet<>();
 		Hashtable<Record, String> result = new Hashtable<>();
 
 		// initialisation
@@ -93,7 +93,7 @@ public class TripPlanner {
 				return result;
 			}
 
-			visited.put(currState, currState.getGCost());
+			visited.add(currState.getCurrCity());
 
 			City currCity = currState.getCurrCity();
 			HashMap<City, Integer> neighboursMap = currCity.getConnections();
@@ -103,6 +103,9 @@ public class TripPlanner {
 				List<Trip> remainingTrips = new LinkedList<Trip>(currState.getRemainingTrips());
 
 				State childState = new State(currState, remainingTrips, trip, gCost);
+				if(! visited.contains(neighbour)){
+					toVisit.add(childState);
+				}
 			}
 		}
 

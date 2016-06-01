@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Util {
 	public static TripPlanner map = new TripPlanner();
 
-	public static ArrayList<Record> records = new ArrayList<>();
+	public static HashSet<Record> records = new HashSet<>();
 	public static ArrayList<Donor> donors = new ArrayList<>();
 
 	public static Hospital hospital = new Hospital("Albert");

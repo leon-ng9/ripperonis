@@ -151,7 +151,7 @@ public class DonorScreen extends JPanel {
 		JPanel amountApp = new JPanel();
 		amountApp.add(new JLabel("Enter amount: "));
 		final JTextField bloodAmount = new JTextField("", 10);
-		amountApp.add(cityName);
+		amountApp.add(bloodAmount);
 		rightScreen.add(amountApp, gbc);
 
 		gbc.gridy = 3;

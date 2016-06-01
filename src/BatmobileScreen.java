@@ -85,6 +85,14 @@ public class BatmobileScreen extends JPanel {
 		for (Record r : closestRequests.keySet()) {
 			JPanel request = new JPanel(new GridLayout(2, 0));
 			request.setOpaque(false);
+      
+      JButton accept = new JButton("Accept");
+      accept.addActionListener(new AddListener(r, mw, bm));
+			request.add(accept);
+			JButton reject = new JButton("Reject");
+      reject.addActionListener(new RejectListener(r,mw,bm));
+			request.add(reject);
+
 			leftScreen.add(request, gbc);
 
 			JLabel recordDetails = new JLabel(r.getDetails());
@@ -94,6 +102,8 @@ public class BatmobileScreen extends JPanel {
 			JLabel string = new JLabel(closestRequests.get(r));
 			string.setForeground(Color.WHITE);
 			leftScreen.add(string, gbc);
+
+
 
 			gbc.gridy += 1;
 		}
