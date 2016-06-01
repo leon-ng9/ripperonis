@@ -42,10 +42,10 @@ public class LoginScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		JPanel login = new JPanel(new GridLayout(2, 0));
 		add(login, gbc);
-		
+
 		JPanel username = new JPanel();
 		username.add(new JLabel("Username: "));
 		username.add(new JTextField("", 10));
@@ -55,16 +55,16 @@ public class LoginScreen extends JPanel {
 		password.add(new JLabel("Password: "));
 		password.add(new JPasswordField("", 10));
 		login.add(password);
-		
+
 		gbc.gridy = 1;
 		add(new JLabel(" "), gbc);
-		
+
 		gbc.gridy = 2;
 		JPanel type = new JPanel(new GridLayout(0, 2));
 		add(type, gbc);
-		
+
 		type.add(new JLabel("User type: "));
-		
+
 		Vector<String> userType = new Vector<String>();
 
 		userType.add("Donor");
@@ -91,30 +91,30 @@ public class LoginScreen extends JPanel {
 
 	private void initConfirmation() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		
+
 		gbc.gridy = 3;
 		add(new JLabel(" "), gbc);
-		
+
 		gbc.gridy = 4;
-		
+
 		JButton confirm = new JButton("Login");
 		confirm.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (targetScreen == "Donor") {
-					LoginScreen.this.mainWindow.switchToDonor(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"));
+					LoginScreen.this.mainWindow.switchToDonor(Util.donors.get(0));
 				} else if (targetScreen == "Hospital") {
-					LoginScreen.this.mainWindow.switchToHospital(new Hospital("London Hospital"));
+					LoginScreen.this.mainWindow.switchToHospital(Util.hospital);
 				} else if (targetScreen == "Batmobile") {
-					LoginScreen.this.mainWindow.switchToBatmobile(new Batmobile("Batman", "London"));
+					LoginScreen.this.mainWindow.switchToBatmobile(Util.batmobile);
 				}
 			}
 		});
 		add(confirm, gbc);
-		
+
 		gbc.gridy = 5;
 		add(new JLabel(" "), gbc);
-		
+
 		gbc.gridy = 6;
 		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener() {
@@ -122,9 +122,8 @@ public class LoginScreen extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
-			
+
 		});
 		add(exit, gbc);
 	}
 }
-
