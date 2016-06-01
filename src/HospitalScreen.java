@@ -12,7 +12,7 @@ public class HospitalScreen extends JPanel {
 	private MainWindow mainWindow;
 	private Hospital hospital;
 	private JPanel bottomScreen;
-	
+
 	public HospitalScreen (MainWindow mainWindow, Hospital hospital) {
 		// Left half: display a list of all blood -- make sure i have access to these stuffs - .allAvailableBlood()
 		// Right half: display a list of all pending requests -- .requests (pending requests? yup) -- a button remove(remove(request)) a button add(update(request))
@@ -23,19 +23,19 @@ public class HospitalScreen extends JPanel {
 		this.hospital = hospital;
 
 		setLayout(new GridBagLayout());
-		
+
 		initTopBar();
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 0.9;
 		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
-		
+
 		bottomScreen = new JPanel(new GridLayout(2, 2));
 		bottomScreen.setOpaque(false);
 		add(bottomScreen, gbc);
-		
+
 		initUpperLeftScreen();
 		initUpperRightScreen();
 		initLowerLeftScreen();
@@ -49,7 +49,7 @@ public class HospitalScreen extends JPanel {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 
-	
+
 	private void initTopBar() {
 		JPanel topBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		topBar.setOpaque(false);
@@ -60,10 +60,10 @@ public class HospitalScreen extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				HospitalScreen.this.mainWindow.switchToLogin();
 			}
-			
+
 		});
 		topBar.add(logout);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.weightx = 1;
 		gbc.weighty = 0.1;
@@ -71,17 +71,17 @@ public class HospitalScreen extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH; // hack
 		add(topBar, gbc);
 	}
-	
-	
+
+
 	private void initUpperLeftScreen() {
 		JPanel upperLeftScreen = new JPanel(new GridBagLayout());
 		upperLeftScreen.setOpaque(false);
 		upperLeftScreen.add(new JLabel("Upper Left Panel"));
 		bottomScreen.add(upperLeftScreen);
-		
+		System.out.println(hospital.summary());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		ArrayList<Blood> availableBloods = hospital.getAvailableBlood();
 		for (Blood b : availableBloods) {
 			JLabel bloodDetails = new JLabel(b.printDetails());
@@ -90,7 +90,7 @@ public class HospitalScreen extends JPanel {
 			gbc.gridy += 1;
 		}
 	}
-	
+
 	private void initUpperRightScreen() {
 		JPanel upperRightScreen = new JPanel(new GridBagLayout());
 		upperRightScreen.setOpaque(false);
@@ -98,20 +98,20 @@ public class HospitalScreen extends JPanel {
 		scrollFrame.getViewport().setOpaque(false);
 		scrollFrame.setOpaque(false);
 		bottomScreen.add(scrollFrame);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		List<Record> pendingRecords = hospital.getPendingRecords();
 		for (Record r : pendingRecords) {
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
 			pendingPanel.setOpaque(false);
 			upperRightScreen.add(pendingPanel, gbc);
-			
+
 			JLabel bloodDetails = new JLabel(r.getDetails());
 			bloodDetails.setForeground(Color.WHITE);
 			pendingPanel.add(bloodDetails);
-			
+
 			JPanel confirmationPanel = new JPanel();
 			confirmationPanel.setOpaque(false);
 			JButton accept = new JButton("Accept");
@@ -119,19 +119,19 @@ public class HospitalScreen extends JPanel {
 			JButton reject = new JButton("Reject");
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
-			
+
 			gbc.gridy += 1;
 		}
-		
-		
+
+
 	}
-	
+
 	private void initLowerLeftScreen() {
 		JPanel lowerLeftScreen = new JPanel(new GridBagLayout());
 		lowerLeftScreen.setOpaque(false);
 		lowerLeftScreen.add(new JLabel("Bottom Left Panel"));
 		bottomScreen.add(lowerLeftScreen);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 	}
 
@@ -140,8 +140,7 @@ public class HospitalScreen extends JPanel {
 		lowerRightScreen.setOpaque(false);
 		lowerRightScreen.add(new JLabel("Bottom Right Panel"));
 		bottomScreen.add(lowerRightScreen);
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 	}
 }
-
