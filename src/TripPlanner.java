@@ -83,8 +83,8 @@ public class TripPlanner {
 
 		while (!toVisit.isEmpty()) {
 			State currState = toVisit.poll();
-			if(list.containsKey(currState.getCurrCity())){
-				ArrayList< Record> currList = list.get(currState.getCurrCity());
+			if(list.containsKey(currState.getCurrCity().toString())){
+				ArrayList< Record> currList = list.get(currState.getCurrCity().toString());
 				for(Record s: currList){
 					result.put(s, currState.toString());
 				}

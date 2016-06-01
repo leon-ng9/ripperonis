@@ -74,6 +74,14 @@ public int hashCode() {
   return getCurrCity().hashCode() + remainingTrips.hashCode();
 }
 
+public String toString(){
+  if(this.prevState == null){
+    return this.lastTrip.toString();
+  }else{
+    return prevState + "->" + this.lastTrip;
+  }
+}
+
 private State prevState;
 private List<Trip> remainingTrips;
 private Trip lastTrip;
