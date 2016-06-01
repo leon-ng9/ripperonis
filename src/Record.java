@@ -21,4 +21,9 @@ public class Record {
 	public String getDetails() {
 		return Util.toHTML("City: " + cityname + "\nCreation date: " + creationDate + "\nUpdate date: " + updateDate);
 	}
+	
+	public void donate(int amount, Batmobile bm) {
+		blood = new Blood(amount,donor, bm);
+		state = 1;
+	}
 }

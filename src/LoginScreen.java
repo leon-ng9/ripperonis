@@ -43,24 +43,33 @@ public class LoginScreen extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 		
+		JPanel login = new JPanel(new GridLayout(2, 0));
+		add(login, gbc);
+		
 		JPanel username = new JPanel();
 		username.add(new JLabel("Username: "));
 		username.add(new JTextField("", 10));
-		add(username, gbc);
+		login.add(username);
 
-		gbc.gridy = 1;
 		JPanel password = new JPanel();
 		password.add(new JLabel("Password: "));
 		password.add(new JPasswordField("", 10));
-		add(password, gbc);
-
+		login.add(password);
+		
+		gbc.gridy = 1;
+		add(new JLabel(" "), gbc);
+		
 		gbc.gridy = 2;
-		// user type
+		JPanel type = new JPanel(new GridLayout(0, 2));
+		add(type, gbc);
+		
+		type.add(new JLabel("User type: "));
+		
 		Vector<String> userType = new Vector<String>();
 
 		userType.add("Donor");
 		userType.add("Hospital");
-		userType.add("Bat-mobile");
+		userType.add("Batmobile");
 
 		// set default
 		this.targetScreen = "Donor";
@@ -77,12 +86,16 @@ public class LoginScreen extends JPanel {
 			}
 		});
 
-		add(userTypeCB, gbc);
+		type.add(userTypeCB, gbc);
 	}
 
 	private void initConfirmation() {
 		GridBagConstraints gbc = new GridBagConstraints();
+		
 		gbc.gridy = 3;
+		add(new JLabel(" "), gbc);
+		
+		gbc.gridy = 4;
 		
 		JButton confirm = new JButton("Login");
 		confirm.addActionListener(new ActionListener(){
@@ -98,6 +111,20 @@ public class LoginScreen extends JPanel {
 			}
 		});
 		add(confirm, gbc);
+		
+		gbc.gridy = 5;
+		add(new JLabel(" "), gbc);
+		
+		gbc.gridy = 6;
+		JButton exit = new JButton("Exit");
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+			
+		});
+		add(exit, gbc);
 	}
 }
 
