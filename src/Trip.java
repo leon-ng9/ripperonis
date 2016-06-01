@@ -1,33 +1,18 @@
 public class Trip implements Comparable<Trip>{
 
-	/**
-	 * Creates a Trip with a source City and a destination City
-	 * @param source the source City of the Trip
-	 * @param dest the destination City of the Trip
-	 */
 	public Trip(City source, City dest) {
 		this.source = source;
 		this.dest = dest;
 	}
 
-	/**
-	 * @return the source City of the Trip
-	 */
 	public City getSource() {
 		return this.source;
 	}
 
-	/**
-	 * @return the destination City of the Trip
-	 */
 	public City getDest() {
 		return this.dest;
 	}
 
-	/**
-	 * Determines the travel time between the source City and the destination City
-	 * @return the travel time from the source City to the destination City
-	 */
 	public int getTravelTime() {
 		if (this.source.equals(this.dest)) {
 			return 0;
@@ -36,10 +21,6 @@ public class Trip implements Comparable<Trip>{
 		}
 	}
 
-	/**
-	 * Two Trips are equal if their source City are equal and their destination
-	 * City are equal
-	 */
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) {
