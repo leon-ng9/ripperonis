@@ -37,7 +37,6 @@ public class Hospital {
 	public ArrayList<Blood> getAvailableBlood(){
 		ArrayList<Blood>  result = new ArrayList<>();
 		for(Record r: Util.records){
-			System.out.println(r.state);
 			if(r.state != 2){
 				continue;
 			}
@@ -46,7 +45,6 @@ public class Hospital {
 				result.add(b);
 			}
 		}
-		System.out.println(result);
 		return result;
 	}
 
@@ -70,6 +68,7 @@ public class Hospital {
 				result.put(b.donor.blood_type,b.amount);
 			}
 		}
+		System.out.println(result);
 		return result;
 	}
 

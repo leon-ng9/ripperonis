@@ -12,7 +12,7 @@ public class Main {
 			@Override
 			public void run() {
 				Random r = new Random();
-				for(int j = 0; j < 100; j ++){
+				for(int j = 0; j < 20; j ++){
 					String gender;
 					if(r.nextBoolean()){
 						gender = "M";
@@ -40,7 +40,7 @@ public class Main {
 					}
 					Util.donors.add(new Donor(String.valueOf(r.nextInt()),"seng2011", gender, blood_type, 1915 + r.nextInt(100), "040000000000"));
 				}
-				for(int i = 0; i < 1000; i ++){
+				for(int i = 0; i < 100; i ++){
 					int index = Util.donors.size();
 					Record rec =new Record(Util.donors.get(r.nextInt(index)),Util.map.getRandCity().getName());
 					rec.blood = new Blood(r.nextInt(900) + 100, rec.donor, Util.batmobile);
@@ -48,7 +48,7 @@ public class Main {
 					rec.state = r.nextInt(4);
 					Util.records.add(rec);
 				}
-				
+
 				MainWindow game = new MainWindow();
 				game.setVisible(true);
 
