@@ -36,11 +36,17 @@ public class Hospital {
 
 	public ArrayList<Blood> getAvailableBlood(){
 		ArrayList<Blood>  result = new ArrayList<>();
-		for(Blood b: bloods){
-			if(b.used_by_date <= (int) System.currentTimeMillis()){
+		for(Record r: Util.records){
+			System.out.println(r.state);
+			if(r.state != 2){
+				continue;
+			}
+			Blood b = r.blood;
+			if(b.used_by_date >= (int) System.currentTimeMillis()){
 				result.add(b);
 			}
 		}
+		System.out.println(result);
 		return result;
 	}
 
