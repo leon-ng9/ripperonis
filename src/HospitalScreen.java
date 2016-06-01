@@ -94,8 +94,9 @@ public class HospitalScreen extends JPanel {
 	private void initUpperRightScreen() {
 		JPanel upperRightScreen = new JPanel(new GridBagLayout());
 		upperRightScreen.setOpaque(false);
-		upperRightScreen.add(new JLabel("Upper Right Panel"));
-		bottomScreen.add(upperRightScreen);
+		JScrollPane scrollFrame = new JScrollPane(upperRightScreen);
+		scrollFrame.setOpaque(false);
+		bottomScreen.add(scrollFrame);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
@@ -103,6 +104,7 @@ public class HospitalScreen extends JPanel {
 		List<Record> pendingRecords = hospital.getPendingRecords();
 		for (Record r : pendingRecords) {
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
+			pendingPanel.setOpaque(false);
 			upperRightScreen.add(pendingPanel, gbc);
 			
 			JLabel bloodDetails = new JLabel(r.getDetails());
