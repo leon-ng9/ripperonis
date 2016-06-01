@@ -13,7 +13,9 @@ public class MainWindow extends JFrame {
 		add(screens);
 
 		// configure the main window
-		setSize(new Dimension(1600, 900));
+		Dimension nativeRes = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(new Dimension ((int)(nativeRes.getWidth() * 0.9), (int)(nativeRes.getHeight() * 0.9)));
+		
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -21,7 +23,7 @@ public class MainWindow extends JFrame {
 		LoginScreen login = new LoginScreen(this);
 		screens.add(login, "Login");
 		System.out.println(Util.batmobile.closestRequest());
-    // System.out.println(Util.donors);
+
 		switchToLogin(); // starting screen
 	}
 
