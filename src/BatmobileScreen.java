@@ -76,12 +76,15 @@ public class BatmobileScreen extends JPanel {
 
 		JPanel leftScreen = new JPanel(new GridBagLayout());
 		leftScreen.setOpaque(false);
-		bottomScreen.add(leftScreen, gbcScreen);
+		JScrollPane scrollPane = new JScrollPane(leftScreen);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		bottomScreen.add(scrollPane, gbcScreen);
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 		
-		JLabel title = new JLabel("<HTML><font size='10'>Requests to Donate</font><br><br></HTML>");
+		JLabel title = new JLabel("<HTML><font size='8'>Prioritized Donation Request</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		leftScreen.add(title, gbc);
 
@@ -146,8 +149,14 @@ public class BatmobileScreen extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
+		JLabel title = new JLabel("<HTML><font size='8'>All Donation Requests</font><br><br></HTML>");
+		title.setForeground(Color.WHITE);
+		rightScreen.add(title, gbc);
+		
 		List<Record> pendingRecords = bm.getPendingRecords();
 		for (Record r : pendingRecords) {
+			gbc.gridy += 1;
+			
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
 			pendingPanel.setOpaque(false);
 			rightScreen.add(pendingPanel, gbc);
@@ -165,8 +174,6 @@ public class BatmobileScreen extends JPanel {
 			reject.addActionListener(new RejectListener(r,mw,bm));
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
-
-			gbc.gridy += 1;
 		}
 	}
 
