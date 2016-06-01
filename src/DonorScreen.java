@@ -73,23 +73,62 @@ public class DonorScreen extends JPanel {
 		leftScreen.setOpaque(false);
 		bottomScreen.add(leftScreen, gbcScreen);
 
+		
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridy = 0;
+		
+		JPanel overallRecordPanel = new JPanel(new GridBagLayout());
+		overallRecordPanel.setOpaque(false);
+		JScrollPane scrollPane = new JScrollPane(overallRecordPanel);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		leftScreen.add(scrollPane, gbc);
+		
+		
 		for (Record r : this.donor.records) {
-			JPanel recordPanel = new JPanel();
-			leftScreen.add(recordPanel, gbc);
+			JPanel recordPanel = new JPanel(new GridBagLayout());
+			recordPanel.setOpaque(false);
+			overallRecordPanel.add(recordPanel, gbc);
 			gbc.gridy += 1;
 
-			JLabel stateLabel = new JLabel("State: " + r.state);
-			recordPanel.add(stateLabel);
+			GridBagConstraints gbcRecord = new GridBagConstraints();
+			gbcRecord.anchor = GridBagConstraints.LINE_START;
+			gbcRecord.gridy = 0;
+			
+			JLabel stateLabel = new JLabel("", SwingConstants.LEFT);
+			int state = r.state;
+			if (state == 0) {
+				stateLabel.setText("Status: Applying to donate");
+			} else if (state == 1) {
+				stateLabel.setText("Status: Being transported");
+			} else if (state == 2) {
+				stateLabel.setText("Status: Stored at a hospital");
+			} else if (state == 3) {
+				stateLabel.setText("Status: Used");
+			}
+			stateLabel.setForeground(Color.WHITE);
+			
+			recordPanel.add(stateLabel, gbcRecord);
 
 			// blood stuff (to do)
+			gbcRecord.gridy = 1;
 			if(r.blood != null){
 				JLabel bloodLabel = new JLabel(r.blood.printDetails());
-				recordPanel.add(bloodLabel);
+				bloodLabel.setForeground(Color.WHITE);
+				recordPanel.add(bloodLabel, gbcRecord);
 			}
+			
+			gbcRecord.gridy = 2;
+			recordPanel.add(new JLabel(" "), gbcRecord);
 		}
 		
+		gbc.weighty = 0;
+		JPanel buttons = new JPanel();
+		buttons.setOpaque(false);
+		leftScreen.add(buttons, gbc);
 		
 		JButton sort = new JButton("Sort");
 		sort.addActionListener(new ActionListener(){
@@ -101,7 +140,7 @@ public class DonorScreen extends JPanel {
 
 			}
 		});
-		leftScreen.add(sort, gbc);
+		buttons.add(sort, gbc);
 
 
 		JButton group = new JButton("Group");
@@ -113,7 +152,7 @@ public class DonorScreen extends JPanel {
 				DonorScreen.this.mw.switchToDonor(DonorScreen.this.donor);
 			}
 		});
-		leftScreen.add(group, gbc);
+		buttons.add(group, gbc);
 
 		
 

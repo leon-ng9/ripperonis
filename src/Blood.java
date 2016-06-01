@@ -18,6 +18,6 @@ public class Blood {
 	}
 
 	public String printDetails(){
-		return Util.toHTML(("Blood type: " + this.donor.blood_type + "\n amount:" + this.amount + "\n used_by_date: " + this.used_by_date));
+		return Util.toHTML(("Blood type: " + this.donor.blood_type + "\n Amount:" + this.amount + "\n Expiration date: " + this.used_by_date));
 	}
 }
