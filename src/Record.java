@@ -21,7 +21,7 @@ public class Record {
 	}
 
 	public String getDetails() {
-		return Util.toHTML("City: " + cityname + "\nCreation date: " + creationDate + "\nUpdate date: " + updateDate);
+		return Util.toHTML("City: " + cityname + "\nCreation date: " + creationDate + "\nUpdate date: " + updateDate + "\nBlood Type: " + donor.blood_type);
 	}
 
 	public void donate(int amount, Batmobile bm) {

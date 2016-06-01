@@ -91,6 +91,7 @@ public class BatmobileScreen extends JPanel {
 			
 			JPanel request = new JPanel(new GridBagLayout());
 			request.setOpaque(false);
+
 			leftScreen.add(request, gbc);
 			
 			GridBagConstraints requestGBC = new GridBagConstraints();
@@ -169,37 +170,39 @@ public class BatmobileScreen extends JPanel {
 		}
 	}
 
-	private class AddListener implements ActionListener{
-		private Record r;
-		private MainWindow mw;
-		private Batmobile bm;
-		public AddListener(Record r, MainWindow mw, Batmobile bm){
-			this.r = r;
-			this.bm = bm;
-			this.mw = mw;
-		}
+  private class AddListener implements ActionListener{
+    private Record r;
+    private MainWindow mw;
+    private Batmobile bm;
+    public AddListener(Record r, MainWindow mw, Batmobile bm){
+      this.r = r;
+        this.bm = bm;
+        this.mw = mw;
+    }
 
-		public void actionPerformed(ActionEvent e){
-			r.state = 1;
-			mw.switchToBatmobile(bm);
-		}
+    public void actionPerformed(ActionEvent e){
+      r.state = 1;
+      mw.switchToBatmobile(bm);
+    }
 
-	}
+  }
 
-	private class RejectListener implements ActionListener{
-		private Record r;
-		private MainWindow mw;
-		private Batmobile bm;
-		public RejectListener(Record r, MainWindow mw, Batmobile bm){
-			this.r = r;
-			this.bm = bm;
-			this.mw = mw;
-		}
+  private class RejectListener implements ActionListener{
+    private Record r;
+    private MainWindow mw;
+    private Batmobile bm;
+    public RejectListener(Record r, MainWindow mw, Batmobile bm){
+      this.r = r;
+        this.bm = bm;
+        this.mw = mw;
+        bm.cityName = r.cityname;
+    }
 
-		public void actionPerformed(ActionEvent e){
-			r.state = -1;
-			mw.switchToBatmobile(bm);
-		}
+    public void actionPerformed(ActionEvent e){
+      r.state = -1;
+      mw.switchToBatmobile(bm);
+    }
 
-	}
+  }
+
 }
