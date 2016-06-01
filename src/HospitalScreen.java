@@ -77,17 +77,31 @@ public class HospitalScreen extends JPanel {
 	private void initUpperLeftScreen() {
 		JPanel upperLeftScreen = new JPanel(new GridBagLayout());
 		upperLeftScreen.setOpaque(false);
-		upperLeftScreen.add(new JLabel("Upper Left Panel"));
-		bottomScreen.add(upperLeftScreen);
-		System.out.println(hospital.summary());
+		JScrollPane scrollPane= new JScrollPane(upperLeftScreen);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		
+		bottomScreen.add(scrollPane);
+//		System.out.println(hospital.summary());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
 		ArrayList<Blood> availableBloods = hospital.getAvailableBlood();
 		for (Blood b : availableBloods) {
+			JPanel blood = new JPanel(new GridBagLayout());
+			blood.setOpaque(false);
+			upperLeftScreen.add(blood, gbc);
+			
+			GridBagConstraints gbcBlood = new GridBagConstraints();
+			gbcBlood.gridy = 0;
+			
 			JLabel bloodDetails = new JLabel(b.printDetails());
 			bloodDetails.setForeground(Color.WHITE);
-			upperLeftScreen.add(bloodDetails, gbc);
+			blood.add(bloodDetails, gbcBlood);
+			
+			gbcBlood.gridy = 1;
+			blood.add(new JLabel(" "), gbcBlood);
+			
 			gbc.gridy += 1;
 		}
 	}
