@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.*;
@@ -138,10 +139,25 @@ public class HospitalScreen extends JPanel {
 	private void initLowerRightScreen() {
 		JPanel lowerRightScreen = new JPanel(new GridBagLayout());
 		lowerRightScreen.setOpaque(false);
-		lowerRightScreen.add(new JLabel("Bottom Right Panel"));
 		bottomScreen.add(lowerRightScreen);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		
+		JLabel title = new JLabel("Blood Summary");
+		title.setForeground(Color.WHITE);
+		lowerRightScreen.add(title, gbc);
+		
+		// calculate summary
+		Hashtable<String, Integer> summary = this.hospital.summary();
+		System.out.println(summary.size());
+		for (String s : summary.keySet()) {
+			gbc.gridy += 1;
+			
+			JLabel detail = new JLabel(s + ": " + summary.get(s));
+			detail.setForeground(Color.WHITE);
+			lowerRightScreen.add(detail, gbc);
+		}
 	}
 }
 
