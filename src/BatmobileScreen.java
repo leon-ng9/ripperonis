@@ -13,7 +13,7 @@ public class BatmobileScreen extends JPanel {
 	private MainWindow mw;
 	private Batmobile bm;
 	private JPanel bottomScreen;
-  private Record curr;
+	private Record curr;
 
 	public BatmobileScreen(MainWindow mw, Batmobile bm) {
 		this.mw = mw;
@@ -76,36 +76,54 @@ public class BatmobileScreen extends JPanel {
 
 		JPanel leftScreen = new JPanel(new GridBagLayout());
 		leftScreen.setOpaque(false);
-		bottomScreen.add(leftScreen, gbcScreen);
+		JScrollPane scrollPane = new JScrollPane(leftScreen);
+		scrollPane.setOpaque(false);
+		scrollPane.getViewport().setOpaque(false);
+		bottomScreen.add(scrollPane, gbcScreen);
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
+		
+		JLabel title = new JLabel("<HTML><font size='8'>Prioritized Donation Request</font><br><br></HTML>");
+		title.setForeground(Color.WHITE);
+		leftScreen.add(title, gbc);
 
 		Hashtable<Record, String> closestRequests = this.bm.closestRequest();
 		for (Record r : closestRequests.keySet()) {
-			JPanel request = new JPanel(new GridLayout(2, 0));
+			gbc.gridy += 1;
+			
+			JPanel request = new JPanel(new GridBagLayout());
 			request.setOpaque(false);
 
-      JButton accept = new JButton("Accept");
-      accept.addActionListener(new AddListener(r, mw, bm));
-			request.add(accept);
-			JButton reject = new JButton("Reject");
-      reject.addActionListener(new RejectListener(r,mw,bm));
-			request.add(reject);
-
 			leftScreen.add(request, gbc);
-
+			
+			GridBagConstraints requestGBC = new GridBagConstraints();
+			
+			requestGBC.gridx = 0;
+			requestGBC.gridy = 1;
 			JLabel recordDetails = new JLabel(r.getDetails());
 			recordDetails.setForeground(Color.WHITE);
-			leftScreen.add(recordDetails, gbc);
+			request.add(recordDetails, requestGBC);
 
-			JLabel string = new JLabel(closestRequests.get(r));
+			requestGBC.gridy = 2;
+			JLabel string = new JLabel("Path: " + closestRequests.get(r));
 			string.setForeground(Color.WHITE);
-			leftScreen.add(string, gbc);
-
-
-
-			gbc.gridy += 1;
+			request.add(string, requestGBC);
+			
+			requestGBC.gridy = 3;
+			requestGBC.gridx = 0;
+			
+			JButton accept = new JButton("Accept");
+			accept.addActionListener(new AddListener(r, mw, bm));
+			request.add(accept, requestGBC);
+			
+			requestGBC.gridx = 1;
+			JButton reject = new JButton("Reject");
+			reject.addActionListener(new RejectListener(r,mw,bm));
+			request.add(reject, requestGBC);
+			
+			requestGBC.gridy = 4;
+			request.add(new JLabel(" "), requestGBC);
 		}
 
 
@@ -131,8 +149,14 @@ public class BatmobileScreen extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
+		JLabel title = new JLabel("<HTML><font size='8'>All Donation Requests</font><br><br></HTML>");
+		title.setForeground(Color.WHITE);
+		rightScreen.add(title, gbc);
+		
 		List<Record> pendingRecords = bm.getPendingRecords();
 		for (Record r : pendingRecords) {
+			gbc.gridy += 1;
+			
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
 			pendingPanel.setOpaque(false);
 			rightScreen.add(pendingPanel, gbc);
@@ -140,18 +164,16 @@ public class BatmobileScreen extends JPanel {
 			JLabel bloodDetails = new JLabel(r.getDetails());
 			bloodDetails.setForeground(Color.WHITE);
 			pendingPanel.add(bloodDetails);
-      curr = r;
+			curr = r;
 			JPanel confirmationPanel = new JPanel();
 			confirmationPanel.setOpaque(false);
 			JButton accept = new JButton("Accept");
-      accept.addActionListener(new AddListener(r, mw, bm));
+			accept.addActionListener(new AddListener(r, mw, bm));
 			confirmationPanel.add(accept);
 			JButton reject = new JButton("Reject");
-      reject.addActionListener(new RejectListener(r,mw,bm));
+			reject.addActionListener(new RejectListener(r,mw,bm));
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
-
-			gbc.gridy += 1;
 		}
 	}
 
@@ -189,4 +211,5 @@ public class BatmobileScreen extends JPanel {
     }
 
   }
+
 }

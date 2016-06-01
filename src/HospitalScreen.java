@@ -86,12 +86,17 @@ public class HospitalScreen extends JPanel {
 		scrollPane.getViewport().setOpaque(false);
 
 		bottomScreen.add(scrollPane);
-//		System.out.println(hospital.summary());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
+		JLabel title = new JLabel("<HTML><font size='10'>Current Blood Stock</font><br><br></HTML>");
+		title.setForeground(Color.WHITE);
+		upperLeftScreen.add(title, gbc);
+
 		ArrayList<Blood> availableBloods = hospital.getAvailableBlood();
 		for (Blood b : availableBloods) {
+			gbc.gridy += 1;
+
 			JPanel blood = new JPanel(new GridBagLayout());
 			blood.setOpaque(false);
 			upperLeftScreen.add(blood, gbc);
@@ -105,8 +110,6 @@ public class HospitalScreen extends JPanel {
 
 			gbcBlood.gridy = 1;
 			blood.add(new JLabel(" "), gbcBlood);
-
-			gbc.gridy += 1;
 		}
 	}
 
@@ -121,8 +124,15 @@ public class HospitalScreen extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
+		JLabel title = new JLabel("<HTML><font size='10'>Incoming Blood</font><br><br></HTML>");
+		title.setForeground(Color.WHITE);
+		upperRightScreen.add(title, gbc);
+
+
 		List<Record> pendingRecords = hospital.getPendingRecords();
 		for (Record r : pendingRecords) {
+			gbc.gridy += 1;
+
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
 			pendingPanel.setOpaque(false);
 			upperRightScreen.add(pendingPanel, gbc);
@@ -140,8 +150,6 @@ public class HospitalScreen extends JPanel {
 			reject.addActionListener(new RejectListener(r,mainWindow,hospital));
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
-
-			gbc.gridy += 1;
 		}
 
 
@@ -154,8 +162,7 @@ public class HospitalScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-
-		JLabel title = new JLabel("Request Blood Form");
+		JLabel title = new JLabel("<HTML><font size='10'>Request Blood Form</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		lowerLeftScreen.add(title, gbc);
 
@@ -239,7 +246,7 @@ final JPanel  resultPan = new JPanel();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
 
-		JLabel title = new JLabel("Blood Summary");
+		JLabel title = new JLabel("<HTML><font size='10'>Blood Summary</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		lowerRightScreen.add(title, gbc);
 
