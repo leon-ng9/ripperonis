@@ -209,9 +209,8 @@ public class HospitalScreen extends JPanel {
 		});
 
 		type.add(userTypeCB, gbc);
-
-		gbc.gridy = 5;
-		final JPanel  resultPan = new JPanel();
+		gbc.gridy = 7;
+		final JPanel  resultPan = new JPanel(new GridBagLayout());
 		resultPan.setOpaque(false);
 		lowerLeftScreen.add(resultPan, gbc);
 
@@ -231,9 +230,21 @@ public class HospitalScreen extends JPanel {
 					resultPan.removeAll();
 					for(Record b: bloods){
 						b.state = 3;
+
+						GridBagConstraints gbcDetails = new GridBagConstraints();
+
+						gbcDetails.gridy = 0;
+						JLabel confirmation = new JLabel("Successfully submitted request");
+						confirmation.setForeground(Color.WHITE);
+						resultPan.add(confirmation, gbcDetails);
+
+						gbcDetails.gridy = 1;
+						resultPan.add(new JLabel(" "), gbcDetails);
+
+						gbcDetails.gridy = 2;
 						JLabel details = new JLabel(b.getDetails());
 						details.setForeground(Color.WHITE);
-						resultPan.add(details);
+						resultPan.add(details, gbcDetails);
 						resultPan.revalidate();
 						resultPan.repaint();
 					}
