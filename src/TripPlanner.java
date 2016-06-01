@@ -12,19 +12,12 @@ import java.util.Scanner;
 
 public class TripPlanner {
 
-	/**
-	 * Constructs a TripPlanner with a Map and no required trips
-	 */
 	public TripPlanner() {
 		this.map = new Map();
 		this.requiredTrips = new LinkedList<Trip>();
 		this.init();
 	}
 
-	/**
-	 * Reads and processes input from a file to form the map and required trips
-	 * @param args Command-line arguments (only first argument, name of the input file, is used)
-	 */
 	public void init() {
 		Scanner sc = null;
 		try {
@@ -46,30 +39,15 @@ public class TripPlanner {
 		}
 	}
 
-	/**
-	 * Adds a new City to the Map
-	 * @param transferTime transfer time of the City
-	 * @param cityName name of the City
-	 */
 	public void addCity(int transferTime, String cityName) {
 		this.map.addCity(transferTime, cityName);
 	}
 
-	/**
-	 * Adds a connection between two cities on the Map
-	 * @param travelTime travel time between the two cities
-	 * @param cityNameA name of the first city
-	 * @param cityNameB name of the second city
-	 */
 	public void addConnection(int travelTime, String cityNameA, String cityNameB) {
 		this.map.addConnection(travelTime, cityNameA, cityNameB);
 	}
 
 
-	/**
-	 * Prints out a minimum-cost path starting from the City "London" containing all of the required
-	 * Trips as well as the nodes expanded during the search and the total cost of the path
-	 */
 	public Hashtable<Record, String> closestCity(String from, int number, Hashtable<String, ArrayList< Record >> list) {
 		StateComparator stateComparator = new StateComparator();
 		PriorityQueue<State> toVisit = new PriorityQueue<State>(11, stateComparator);
