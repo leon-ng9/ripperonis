@@ -9,12 +9,23 @@ import javax.swing.*;
 public class DonorScreen extends JPanel {
 	private MainWindow mw;
 	private Donor donor;
+	private JPanel bottomScreen;
 
 	public DonorScreen(MainWindow mw, Donor donor) {
 		this.mw = mw;
 		this.donor = donor;
-		this.setLayout(new GridLayout(0, 2)); // 2 columns 
+		this.setLayout(new GridBagLayout()); 
 
+		initTopBar();
+		
+		bottomScreen = new JPanel(new GridBagLayout());
+		bottomScreen.setOpaque(false);
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 1;
+		gbc.weighty = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		add(bottomScreen, gbc);
+		
 		initLeftScreen();
 		initRightScreen();
 	}
@@ -29,10 +40,38 @@ public class DonorScreen extends JPanel {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 
+	private void initTopBar() {
+		JPanel topBar = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		topBar.setOpaque(false);
+		JButton logout = new JButton("Logout");
+		logout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DonorScreen.this.mw.switchToLogin();
+			}
+			
+		});
+		topBar.add(logout);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.weightx = 1;
+		gbc.weighty = 0.1;
+		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.BOTH; // hack
+		add(topBar, gbc);
+	}
+	
 	private void initLeftScreen() {
+		GridBagConstraints gbcScreen = new GridBagConstraints();
+		gbcScreen.gridy = 1;
+		gbcScreen.weightx = 1;
+		gbcScreen.weighty = 0.9;
+		gbcScreen.fill = GridBagConstraints.BOTH;
+		
 		JPanel leftScreen = new JPanel(new GridBagLayout());
 		leftScreen.setOpaque(false);
-		add(leftScreen);
+		bottomScreen.add(leftScreen, gbcScreen);
 
 		JButton sort = new JButton("Sort");
 		sort.addActionListener(new ActionListener(){
@@ -79,9 +118,15 @@ public class DonorScreen extends JPanel {
 
 
 	private void initRightScreen() {
+		GridBagConstraints gbcScreen = new GridBagConstraints();
+		gbcScreen.gridy = 1;
+		gbcScreen.weightx = 1;
+		gbcScreen.weighty = 0.9;
+		gbcScreen.fill = GridBagConstraints.BOTH;
+		
 		JPanel rightScreen = new JPanel(new GridBagLayout());
 		rightScreen.setOpaque(false);
-		add(rightScreen);
+		bottomScreen.add(rightScreen, gbcScreen);
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -114,11 +159,5 @@ public class DonorScreen extends JPanel {
 		JLabel details = new JLabel(this.donor.getDetails());
 		details.setForeground(Color.WHITE);
 		rightScreen.add(details, gbc);
-
-		
-		
-		
-		
-		
 	}
 }

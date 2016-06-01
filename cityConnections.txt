@@ -1,0 +1,130 @@
+Transfer 432 London
+Transfer 295 Czech
+Transfer 127 Jyv
+Transfer 179 Tours
+Transfer 411 Hamburg
+Transfer 294 Nice
+Transfer 82 Oviedo
+Transfer 111 Badalona
+Transfer 217 Vienna
+Transfer 463 Metz
+Transfer 283 Sofia
+Transfer 149 Cartagena
+Transfer 484 Sort
+Transfer 284 Leeds
+Transfer 438 Buz
+Transfer 277 Gda
+Transfer 251 Caen
+Transfer 349 Stockholm
+Transfer 277 Essen
+Transfer 453 Bac
+Time 419 Bac Czech
+Time 2342 Bac Jyv
+Time 1341 Bac Tours
+Time 345 Bac Hamburg
+Time 1375 Bac Oviedo
+Time 436 Bac Badalona
+Time 2172 Bac Vienna
+Time 440 Bac Sofia
+Time 1316 Bac Sort
+Time 2512 Bac Buz
+Time 1382 Bac Gda
+Time 2400 Bac Stockholm
+Time 1293 Bac Essen
+Time 1301 Essen Jyv
+Time 1288 Essen Hamburg
+Time 1240 Essen Nice
+Time 612 Essen Oviedo
+Time 1239 Essen Vienna
+Time 1167 Essen Sofia
+Time 1355 Essen Cartagena
+Time 1362 Essen Leeds
+Time 576 Essen Gda
+Time 1456 Essen Caen
+Time 1396 Essen Stockholm
+Time 667 Stockholm Jyv
+Time 1250 Stockholm Tours
+Time 2406 Stockholm Hamburg
+Time 2221 Stockholm Badalona
+Time 631 Stockholm Vienna
+Time 1339 Stockholm Metz
+Time 610 Stockholm Cartagena
+Time 1432 Stockholm Sort
+Time 515 Caen Czech
+Time 1469 Caen Tours
+Time 518 Caen Badalona
+Time 1464 Caen Metz
+Time 576 Caen Sofia
+Time 1405 Caen Sort
+Time 2661 Caen Buz
+Time 1570 Caen Gda
+Time 832 Gda London
+Time 1359 Gda Czech
+Time 1188 Gda Jyv
+Time 646 Gda Oviedo
+Time 1264 Gda Badalona
+Time 1075 Gda Vienna
+Time 1303 Gda Sofia
+Time 841 Gda Sort
+Time 1456 Gda Leeds
+Time 1231 Buz London
+Time 1423 Buz Tours
+Time 561 Buz Nice
+Time 651 Buz Vienna
+Time 1425 Buz Metz
+Time 635 Buz Cartagena
+Time 2566 Buz Leeds
+Time 1556 Leeds London
+Time 2369 Leeds Jyv
+Time 1408 Leeds Tours
+Time 479 Leeds Hamburg
+Time 1391 Leeds Oviedo
+Time 1404 Leeds Metz
+Time 1335 Sort Jyv
+Time 659 Sort Tours
+Time 1265 Sort Hamburg
+Time 1255 Sort Nice
+Time 662 Sort Oviedo
+Time 1114 Sort Badalona
+Time 1367 Sort Cartagena
+Time 1203 Cartagena London
+Time 2278 Cartagena Czech
+Time 671 Cartagena Jyv
+Time 558 Cartagena Nice
+Time 735 Cartagena Vienna
+Time 1291 Cartagena Metz
+Time 2271 Cartagena Sofia
+Time 2200 Sofia Jyv
+Time 1227 Sofia Tours
+Time 467 Sofia Hamburg
+Time 1231 Sofia Oviedo
+Time 1270 Metz Czech
+Time 1320 Metz Jyv
+Time 695 Metz Tours
+Time 1356 Metz Hamburg
+Time 800 Metz Oviedo
+Time 1180 Metz Badalona
+Time 1184 Metz Vienna
+Time 597 Vienna Nice
+Time 1064 Vienna Oviedo
+Time 2007 Vienna Badalona
+Time 1391 Badalona London
+Time 486 Badalona Czech
+Time 1218 Badalona Tours
+Time 426 Badalona Hamburg
+Time 2112 Badalona Nice
+Time 1230 Badalona Oviedo
+Time 518 Oviedo London
+Time 1266 Oviedo Czech
+Time 725 Oviedo Tours
+Time 1123 Oviedo Nice
+Time 2137 Nice Czech
+Time 676 Nice Jyv
+Time 1225 Nice Tours
+Time 2268 Nice Hamburg
+Time 1505 Hamburg London
+Time 1304 Hamburg Tours
+Time 709 Tours London
+Time 1263 Tours Czech
+Time 1252 Tours Jyv
+Time 1374 Czech London

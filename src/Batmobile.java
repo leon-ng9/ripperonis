@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import org.omg.CORBA.Request;
-
+// list of donors ( 5 closest to donors & the paths to go to them )
+// take off the list
 public class Batmobile {
   public String name;
   public String cityName;
@@ -12,9 +12,19 @@ public class Batmobile {
     this.cityName = cityName;
   }
 
-  public Hashtable<Request, String> closestRequest(){
-    Map map = Util.map;
-    Hashtable<Request, String> preresult = map.closestCity(cityName, 5);
+  public Hashtable<Record, String> closestRequest(){
+    TripPlanner map = Util.map;
+    Hashtable<String, ArrayList<Record>> records = new Hashtable<>();
+    for(Record r: Util.records){
+    	if(records.containsKey(r.cityname)){
+    		records.get(r.cityname).add(r);
+    	}else{
+    		ArrayList<Record> ar = new ArrayList<>();
+    		ar.add(r);
+    		records.put(r.cityname, ar);
+    	}
+    }
+    Hashtable<Record, String> preresult = map.closestCity(cityName, 5, records);
     return preresult;
   }
 
@@ -24,7 +34,7 @@ public class Batmobile {
 
   public void update(Record r){
     r.state = 1;
-    r.UpdateDate = currentTime;
+    r.updateDate = (int) System.currentTimeMillis();
   }
   public List<Record> getPendingRecords(){
     ArrayList<Record> result = new ArrayList<>();

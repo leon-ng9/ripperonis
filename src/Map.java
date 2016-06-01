@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class Map {
 
@@ -45,6 +48,11 @@ public class Map {
 		cityA.addConnection(cityB, travelTime);
 		cityB.addConnection(cityA, travelTime);
 	}
-
+	
+	public City getRandCity(){
+		Random r = new Random();
+		return cities.get(r.nextInt(cities.size()));
+	}
+	
 	private List<City> cities;
 }

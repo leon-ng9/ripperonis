@@ -13,6 +13,7 @@ public class Donor {
 	public int YOB; // year of birth
 	public String phone;
 	public String cityName;
+	public List<Record> records;
 
 	public Donor(String username, String password, String gender, String blood_type, int YOB, String phone){
 		this.username = username;

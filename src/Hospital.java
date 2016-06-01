@@ -22,7 +22,7 @@ public class Hospital {
 	}
 
 	public void update(Record r){
-		if(records.remove(r)){
+		if(r.state == 1){
 			r.blood.hospital = this;
 			r.state = 2;
 			r.updateDate = (int) System.currentTimeMillis();
