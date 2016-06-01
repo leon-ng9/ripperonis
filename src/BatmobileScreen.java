@@ -13,6 +13,7 @@ public class BatmobileScreen extends JPanel {
 	private MainWindow mw;
 	private Batmobile bm;
 	private JPanel bottomScreen;
+  private Record curr;
 
 	public BatmobileScreen(MainWindow mw, Batmobile bm) {
 		this.mw = mw;
@@ -129,16 +130,52 @@ public class BatmobileScreen extends JPanel {
 			JLabel bloodDetails = new JLabel(r.getDetails());
 			bloodDetails.setForeground(Color.WHITE);
 			pendingPanel.add(bloodDetails);
-
+      curr = r;
 			JPanel confirmationPanel = new JPanel();
 			confirmationPanel.setOpaque(false);
 			JButton accept = new JButton("Accept");
+      accept.addActionListener(new AddListener(r, mw, bm));
 			confirmationPanel.add(accept);
 			JButton reject = new JButton("Reject");
+      reject.addActionListener(new RejectListener(r,mw,bm));
 			confirmationPanel.add(reject);
 			pendingPanel.add(confirmationPanel);
 
 			gbc.gridy += 1;
 		}
 	}
+
+  private class AddListener implements ActionListener{
+    private Record r;
+    private MainWindow mw;
+    private Batmobile bm;
+    public AddListener(Record r, MainWindow mw, Batmobile bm){
+      this.r = r;
+        this.bm = bm;
+        this.mw = mw;
+    }
+
+    public void actionPerformed(ActionEvent e){
+      r.state = 1;
+      mw.switchToBatmobile(bm);
+    }
+
+  }
+
+  private class RejectListener implements ActionListener{
+    private Record r;
+    private MainWindow mw;
+    private Batmobile bm;
+    public RejectListener(Record r, MainWindow mw, Batmobile bm){
+      this.r = r;
+        this.bm = bm;
+        this.mw = mw;
+    }
+
+    public void actionPerformed(ActionEvent e){
+      r.state = -1;
+      mw.switchToBatmobile(bm);
+    }
+
+  }
 }
