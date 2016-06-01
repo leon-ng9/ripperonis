@@ -42,9 +42,9 @@ public class Hospital {
 				continue;
 			}
 			Blood b = r.blood;
-			// if(b.used_by_date <= (int) System.currentTimeMillis()){
+			if(b.used_by_date >= (int) System.currentTimeMillis()){
 				result.add(b);
-			// }
+			}
 		}
 		System.out.println(result);
 		return result;
