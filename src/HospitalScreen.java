@@ -95,6 +95,7 @@ public class HospitalScreen extends JPanel {
 		JPanel upperRightScreen = new JPanel(new GridBagLayout());
 		upperRightScreen.setOpaque(false);
 		JScrollPane scrollFrame = new JScrollPane(upperRightScreen);
+		scrollFrame.getViewport().setOpaque(false);
 		scrollFrame.setOpaque(false);
 		bottomScreen.add(scrollFrame);
 		
@@ -112,10 +113,12 @@ public class HospitalScreen extends JPanel {
 			pendingPanel.add(bloodDetails);
 			
 			JPanel confirmationPanel = new JPanel();
+			confirmationPanel.setOpaque(false);
 			JButton accept = new JButton("Accept");
 			confirmationPanel.add(accept);
 			JButton reject = new JButton("Reject");
 			confirmationPanel.add(reject);
+			pendingPanel.add(confirmationPanel);
 			
 			gbc.gridy += 1;
 		}
