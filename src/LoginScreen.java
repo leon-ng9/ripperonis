@@ -20,6 +20,7 @@ public class LoginScreen extends JPanel {
 
 		this.setLayout(new GridBagLayout());
 		// hospital, donor, batmobile
+		initTitle();
 		initLoginPanel();
 		initConfirmation();
 	}
@@ -34,6 +35,16 @@ public class LoginScreen extends JPanel {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
 	}
 
+	private void initTitle() {
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		
+		JLabel title = new JLabel("Blood Management System");
+		title.setForeground(Color.ORANGE);
+		title.setFont(new Font("Devanagari MT", Font.PLAIN, 50));
+		add(title, gbc);
+	}
+	
 	/**
 	 * Initializes a resolution drop-down menu. The menu contains standard resolutions
 	 * supported by the user's native screen resolution.
@@ -41,7 +52,7 @@ public class LoginScreen extends JPanel {
 	private void initLoginPanel() {
 
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 
 		JPanel login = new JPanel(new GridLayout(2, 0));
 		add(login, gbc);
@@ -56,10 +67,10 @@ public class LoginScreen extends JPanel {
 		password.add(new JPasswordField("", 10));
 		login.add(password);
 
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		add(new JLabel(" "), gbc);
 
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		JPanel type = new JPanel(new GridLayout(0, 2));
 		add(type, gbc);
 
@@ -92,10 +103,10 @@ public class LoginScreen extends JPanel {
 	private void initConfirmation() {
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		add(new JLabel(" "), gbc);
 
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 
 		JButton confirm = new JButton("Login");
 		confirm.addActionListener(new ActionListener(){
@@ -112,10 +123,10 @@ public class LoginScreen extends JPanel {
 		});
 		add(confirm, gbc);
 
-		gbc.gridy = 5;
+		gbc.gridy = 6;
 		add(new JLabel(" "), gbc);
 
-		gbc.gridy = 6;
+		gbc.gridy = 7;
 		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener() {
 			@Override

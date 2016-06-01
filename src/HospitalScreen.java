@@ -209,8 +209,12 @@ public class HospitalScreen extends JPanel {
 		});
 
 		type.add(userTypeCB, gbc);
-final JPanel  resultPan = new JPanel();
-
+		
+		gbc.gridy = 5;
+		final JPanel  resultPan = new JPanel();
+		resultPan.setOpaque(false);
+		lowerLeftScreen.add(resultPan, gbc);
+		
 		gbc.gridy = 6;
 		JButton submit = new JButton("Request");
 		lowerLeftScreen.add(submit, gbc);
@@ -224,7 +228,10 @@ final JPanel  resultPan = new JPanel();
 				}else{
 					for(Record b: bloods){
 						b.state = 3;
-						resultPan.add(new JLabel(b.getDetails()));
+						JLabel details = new JLabel(b.getDetails());
+						details.setForeground(Color.WHITE);
+						resultPan.add(details);
+						resultPan.revalidate();
 						resultPan.repaint();
 					}
 				}
@@ -232,9 +239,6 @@ final JPanel  resultPan = new JPanel();
 
 		});
 
-		gbc.gridy = 8;
-
-		lowerLeftScreen.add(resultPan, gbc);
 
 	}
 
@@ -269,8 +273,8 @@ final JPanel  resultPan = new JPanel();
 		private Hospital bm;
 		public AddListener(Record r, MainWindow mw, Hospital bm){
 			this.r = r;
-				this.bm = bm;
-				this.mw = mw;
+			this.bm = bm;
+			this.mw = mw;
 		}
 
 		public void actionPerformed(ActionEvent e){
@@ -285,9 +289,9 @@ final JPanel  resultPan = new JPanel();
 		private MainWindow mw;
 		private Hospital bm;
 		public RejectListener(Record r, MainWindow mw, Hospital bm){
-			  this.r = r;
-				this.bm = bm;
-				this.mw = mw;
+			this.r = r;
+			this.bm = bm;
+			this.mw = mw;
 		}
 
 		public void actionPerformed(ActionEvent e){
