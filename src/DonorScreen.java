@@ -78,8 +78,8 @@ public class DonorScreen extends JPanel {
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.BOTH;
-		
-		
+
+
 		gbc.gridy = 0;
 
 		JPanel overallRecordPanel = new JPanel(new GridBagLayout());
@@ -93,11 +93,11 @@ public class DonorScreen extends JPanel {
 		JLabel title = new JLabel("<HTML><font size='10'>Donation History</font><br><br></HTML>", SwingConstants.CENTER);
 		title.setForeground(Color.WHITE);
 		overallRecordPanel.add(title, gbc);
-		
+
 
 		for (Record r : this.donor.records) {
 			gbc.gridy += 1;
-			
+
 			JPanel recordPanel = new JPanel(new GridBagLayout());
 			recordPanel.setOpaque(false);
 			overallRecordPanel.add(recordPanel, gbc);
@@ -191,15 +191,15 @@ public class DonorScreen extends JPanel {
 		JLabel title = new JLabel("<HTML><u>Current Details</u></HTML>");
 		title.setForeground(Color.WHITE);
 		rightScreen.add(title, gbc);
-		
+
 		gbc.gridy = 2;
 		JLabel details = new JLabel(this.donor.getDetails());
 		details.setForeground(Color.WHITE);
 		rightScreen.add(details, gbc);
-		
+
 		gbc.gridy = 3;
 		rightScreen.add(new JLabel(" "), gbc);
-		
+
 		gbc.gridy = 4;
 		JPanel donationApplication = new JPanel();
 		donationApplication.add(new JLabel("Enter city name: "));
@@ -222,12 +222,11 @@ public class DonorScreen extends JPanel {
 				DonorScreen.this.donor.cityName = cityName.getText();
 				Record record = new Record(donor, cityName.getText());
 				record.blood = new Blood(Integer.parseInt(bloodAmount.getText()), donor, Util.batmobile);
-				donor.addRecord(record);
 				DonorScreen.this.mw.switchToDonor(DonorScreen.this.donor);
 			}
 		});
 		rightScreen.add(update, gbc);
 
-		
+
 	}
 }
