@@ -209,12 +209,12 @@ public class HospitalScreen extends JPanel {
 		});
 
 		type.add(userTypeCB, gbc);
-		
+
 		gbc.gridy = 5;
 		final JPanel  resultPan = new JPanel();
 		resultPan.setOpaque(false);
 		lowerLeftScreen.add(resultPan, gbc);
-		
+
 		gbc.gridy = 6;
 		JButton submit = new JButton("Request");
 		lowerLeftScreen.add(submit, gbc);
@@ -222,10 +222,13 @@ public class HospitalScreen extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				int amount = Integer.parseInt(amountField.getText());
 				List<Record> bloods = hospital.requestBlood(amount, (String) userTypeCB.getSelectedItem());
 				if(bloods == null){
+					JOptionPane.showMessageDialog(null, "My Goodness, this is so bad, we don't have this type of blood!!!");
 				}else{
+					resultPan.removeAll();
 					for(Record b: bloods){
 						b.state = 3;
 						JLabel details = new JLabel(b.getDetails());
