@@ -47,8 +47,8 @@ public class MainWindow extends JFrame {
 		cl.show(screens, "Hospital");
 	}
 
-	public void switchToBatmobile() {
-		screens.add(new BatmobileScreen(), "Batmobile");
+	public void switchToBatmobile(Batmobile bm) {
+		screens.add(new BatmobileScreen(this, bm), "Batmobile");
 		CardLayout cl = (CardLayout) screens.getLayout();
 		cl.show(screens, "Batmobile");
 	}

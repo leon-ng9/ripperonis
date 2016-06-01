@@ -73,6 +73,24 @@ public class DonorScreen extends JPanel {
 		leftScreen.setOpaque(false);
 		bottomScreen.add(leftScreen, gbcScreen);
 
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		for (Record r : this.donor.records) {
+			JPanel recordPanel = new JPanel();
+			leftScreen.add(recordPanel, gbc);
+			gbc.gridy += 1;
+
+			JLabel stateLabel = new JLabel("State: " + r.state);
+			recordPanel.add(stateLabel);
+
+			// blood stuff (to do)
+			if(r.blood != null){
+				JLabel bloodLabel = new JLabel(r.blood.printDetails());
+				recordPanel.add(bloodLabel);
+			}
+		}
+		
+		
 		JButton sort = new JButton("Sort");
 		sort.addActionListener(new ActionListener(){
 
@@ -83,7 +101,7 @@ public class DonorScreen extends JPanel {
 
 			}
 		});
-		leftScreen.add(sort);
+		leftScreen.add(sort, gbc);
 
 
 		JButton group = new JButton("Group");
@@ -95,25 +113,11 @@ public class DonorScreen extends JPanel {
 				DonorScreen.this.mw.switchToDonor(DonorScreen.this.donor);
 			}
 		});
-		leftScreen.add(group);
+		leftScreen.add(group, gbc);
 
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridy = 0;
+		
 
-		for (Record r : this.donor.records) {
-			JPanel recordPanel = new JPanel();
-			leftScreen.add(recordPanel);
-			gbc.gridy += 1;
-
-			JLabel stateLabel = new JLabel("State: " + r.state);
-			recordPanel.add(stateLabel);
-
-			// blood stuff (to do)
-			if(r.blood != null){
-				JLabel bloodLabel = new JLabel("Blood: " + r.blood.toString());
-				recordPanel.add(bloodLabel);
-			}
-		}
+		
 	}
 
 
@@ -151,6 +155,7 @@ public class DonorScreen extends JPanel {
 				DonorScreen.this.donor.cityName = cityName.getText();
 				Record record = new Record(donor, cityName.getText());
 				donor.addRecord(record);
+				DonorScreen.this.mw.switchToDonor(DonorScreen.this.donor);
 			}
 		});
 		rightScreen.add(update, gbc);
