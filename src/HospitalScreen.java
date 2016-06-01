@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Vector;
 
 import javax.*;
 import javax.swing.*;
@@ -148,10 +149,70 @@ public class HospitalScreen extends JPanel {
 	private void initLowerLeftScreen() {
 		JPanel lowerLeftScreen = new JPanel(new GridBagLayout());
 		lowerLeftScreen.setOpaque(false);
-		lowerLeftScreen.add(new JLabel("Bottom Left Panel"));
 		bottomScreen.add(lowerLeftScreen);
 
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		
+		JLabel title = new JLabel("Request Blood Form");
+		title.setForeground(Color.WHITE);
+		lowerLeftScreen.add(title, gbc);
+		
+		gbc.gridy = 2;
+		JPanel amount = new JPanel();
+		lowerLeftScreen.add(amount, gbc);
+		amount.add(new JLabel("Amount: "));
+		final JTextField amountField = new JTextField("", 10);
+		amount.add(amountField);
+		
+		
+		
+		
+		gbc.gridy = 4;
+		JPanel type = new JPanel();
+		lowerLeftScreen.add(type, gbc);
+		
+		type.add(new JLabel("Blood type: "));
+		
+		Vector<String> userType = new Vector<String>();
+
+		userType.add("A+");
+		userType.add("A-");
+		userType.add("B+");
+		userType.add("B-");
+		userType.add("O+");
+		userType.add("O-");
+		userType.add("AB+");
+		userType.add("AB-");
+
+		JComboBox<String> userTypeCB = new JComboBox<String>(userType);
+		userTypeCB.setSelectedIndex(0);
+		userTypeCB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("unchecked")
+				JComboBox<String> cb = (JComboBox<String>)e.getSource();
+				String userType = (String)cb.getSelectedItem();
+				// DO SOMETHING HERE MARK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			}
+		});
+		
+		type.add(userTypeCB, gbc);
+		
+		
+		gbc.gridy = 6;
+		JButton submit = new JButton("Request");
+		lowerLeftScreen.add(submit, gbc);
+		submit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// DO SOMETHING HERE MARK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			}
+			
+		});
+		
+		
 	}
 
 	private void initLowerRightScreen() {
