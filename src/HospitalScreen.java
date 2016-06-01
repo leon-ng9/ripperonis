@@ -14,6 +14,7 @@ public class HospitalScreen extends JPanel {
 	private MainWindow mainWindow;
 	private Hospital hospital;
 	private JPanel bottomScreen;
+	private String chosenType;
 
 	public HospitalScreen (MainWindow mainWindow, Hospital hospital) {
 		// Left half: display a list of all blood -- make sure i have access to these stuffs - .allAvailableBlood()
@@ -91,11 +92,11 @@ public class HospitalScreen extends JPanel {
 		JLabel title = new JLabel("<HTML><font size='10'>Current Blood Stock</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		upperLeftScreen.add(title, gbc);
-		
+
 		ArrayList<Blood> availableBloods = hospital.getAvailableBlood();
 		for (Blood b : availableBloods) {
 			gbc.gridy += 1;
-			
+
 			JPanel blood = new JPanel(new GridBagLayout());
 			blood.setOpaque(false);
 			upperLeftScreen.add(blood, gbc);
@@ -122,16 +123,16 @@ public class HospitalScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		JLabel title = new JLabel("<HTML><font size='10'>Incoming Blood</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		upperRightScreen.add(title, gbc);
-		
+
 
 		List<Record> pendingRecords = hospital.getPendingRecords();
 		for (Record r : pendingRecords) {
 			gbc.gridy += 1;
-			
+
 			JPanel pendingPanel = new JPanel(new GridLayout(2, 0));
 			pendingPanel.setOpaque(false);
 			upperRightScreen.add(pendingPanel, gbc);
@@ -161,27 +162,26 @@ public class HospitalScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
 		JLabel title = new JLabel("<HTML><font size='10'>Request Blood Form</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		lowerLeftScreen.add(title, gbc);
-		
+
 		gbc.gridy = 2;
 		JPanel amount = new JPanel();
 		lowerLeftScreen.add(amount, gbc);
 		amount.add(new JLabel("Amount: "));
 		final JTextField amountField = new JTextField("", 10);
 		amount.add(amountField);
-		
-		
-		
-		
+
+
+
+
 		gbc.gridy = 4;
 		JPanel type = new JPanel();
 		lowerLeftScreen.add(type, gbc);
-		
+
 		type.add(new JLabel("Blood type: "));
-		
+
 		Vector<String> userType = new Vector<String>();
 
 		userType.add("A+");
@@ -193,7 +193,9 @@ public class HospitalScreen extends JPanel {
 		userType.add("AB+");
 		userType.add("AB-");
 
-		JComboBox<String> userTypeCB = new JComboBox<String>(userType);
+
+
+		final JComboBox<String>  userTypeCB = new JComboBox<String>(userType);
 		userTypeCB.setSelectedIndex(0);
 		userTypeCB.addActionListener(new ActionListener() {
 			@Override
@@ -201,13 +203,14 @@ public class HospitalScreen extends JPanel {
 				@SuppressWarnings("unchecked")
 				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				String userType = (String)cb.getSelectedItem();
-				// DO SOMETHING HERE MARK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				System.out.println(userType);
+				chosenType = userType;
 			}
 		});
-		
+
 		type.add(userTypeCB, gbc);
-		
-		
+final JPanel  resultPan = new JPanel();
+
 		gbc.gridy = 6;
 		JButton submit = new JButton("Request");
 		lowerLeftScreen.add(submit, gbc);
@@ -215,12 +218,24 @@ public class HospitalScreen extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// DO SOMETHING HERE MARK ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				int amount = Integer.parseInt(amountField.getText());
+				List<Record> bloods = hospital.requestBlood(amount, (String) userTypeCB.getSelectedItem());
+				if(bloods == null){
+				}else{
+					for(Record b: bloods){
+						b.state = 3;
+						resultPan.add(new JLabel(b.getDetails()));
+						resultPan.repaint();
+					}
+				}
 			}
-			
+
 		});
-		
-		
+
+		gbc.gridy = 8;
+
+		lowerLeftScreen.add(resultPan, gbc);
+
 	}
 
 	private void initLowerRightScreen() {
@@ -230,7 +245,7 @@ public class HospitalScreen extends JPanel {
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy = 0;
-		
+
 		JLabel title = new JLabel("<HTML><font size='10'>Blood Summary</font><br><br></HTML>");
 		title.setForeground(Color.WHITE);
 		lowerRightScreen.add(title, gbc);

@@ -11,10 +11,10 @@ public class Hospital {
 	public Hospital(String name){
 		this.name = name;
 		this.bloods = new ArrayList<Blood>();
-		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
+		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
+		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
+		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
+		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
 	}
 
 	public void add(Record r){
@@ -41,7 +41,7 @@ public class Hospital {
 				continue;
 			}
 			Blood b = r.blood;
-			if(b.used_by_date >= (int) System.currentTimeMillis()){
+			if(b.used_by_date >= (int) System.currentTimeMillis() && !b.used){
 				result.add(b);
 			}
 		}
@@ -72,29 +72,28 @@ public class Hospital {
 		return result;
 	}
 
-	public List<Blood> requestBlood(int amount, String type){
+	public List<Record> requestBlood(int amount, String type){
 		sortRecordByUsedByDate();
-		ArrayList<Blood> result = new ArrayList<>();
-		ArrayList<Integer> index = new ArrayList<>();
+		ArrayList<Record> result = new ArrayList<>();
 		int i = 0;
-		while(amount > 0 && i < bloods.size()){
-			Blood curr = bloods.get(i);
+		for(Record curr: Util.records){
+			if(amount <= 0){
+				break;
+			}
+			if(curr.state != 2){
+				continue;
+			}
+			System.out.println(curr.donor.blood_type +" " + type);
 			if(curr.donor.blood_type.equals(type)){
-				index.add(i);
 				result.add(curr);
-				amount -= curr.amount;
+				amount -= curr.blood.amount;
 			}
 			i ++;
 		}
-		if(i == bloods.size()){
+		if(amount > 0){
+			System.out.println("DS");
 			return null;
 		}else{
-			int p = 0;
-			for(Integer j: index){
-				bloods.get(j-p).used = true;
-				bloods.remove(j - p);
-				p++;
-			}
 			return result;
 		}
 	}
