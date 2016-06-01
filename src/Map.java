@@ -48,11 +48,12 @@ public class Map {
 		cityA.addConnection(cityB, travelTime);
 		cityB.addConnection(cityA, travelTime);
 	}
-	
+
 	public City getRandCity(){
 		Random r = new Random();
+		// System.out.println(cities);
 		return cities.get(r.nextInt(cities.size()));
 	}
-	
+
 	private List<City> cities;
 }

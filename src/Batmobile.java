@@ -10,6 +10,7 @@ public class Batmobile {
   public Batmobile(String name, String cityName){
     this.name = name;
     this.cityName = cityName;
+
   }
 
   public Hashtable<Record, String> closestRequest(){
@@ -24,6 +25,7 @@ public class Batmobile {
     		records.put(r.cityname, ar);
     	}
     }
+  
     Hashtable<Record, String> preresult = map.closestCity(cityName, 5, records);
     return preresult;
   }

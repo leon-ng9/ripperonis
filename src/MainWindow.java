@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
 
 	/**
 	 * Creates a JFrame that contains all the components of the game including
-	 * MenuScreen, GameScreen, TutorialScreen and OptionsScreen. 
+	 * MenuScreen, GameScreen, TutorialScreen and OptionsScreen.
 	 * Initialized to display the MenuScreen first.
 	 */
 	public MainWindow() {
@@ -25,7 +25,8 @@ public class MainWindow extends JFrame {
 		// login screen
 		LoginScreen login = new LoginScreen(this);
 		screens.add(login, "Login");
-
+		System.out.println(Util.batmobile.closestRequest());
+    // System.out.println(Util.donors);
 		switchToLogin(); // starting screen
 	}
 

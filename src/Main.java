@@ -11,10 +11,6 @@ public class Main {
 
 			@Override
 			public void run() {
-				MainWindow game = new MainWindow();
-				game.setVisible(true);
-
-				ArrayList<Donor> donors = new ArrayList<>();
 				Random r = new Random();
 				for(int j = 0; j < 100; j ++){
 					String gender;
@@ -42,16 +38,21 @@ public class Main {
 					}else{
 						blood_type = "AB-";
 					}
-					donors.add(new Donor(String.valueOf(r.nextInt()),"seng2011", gender, blood_type, 1915 + r.nextInt(100), "040000000000"));
+					Util.donors.add(new Donor(String.valueOf(r.nextInt()),"seng2011", gender, blood_type, 1915 + r.nextInt(100), "040000000000"));
 				}
-				Batmobile bm = new Batmobile("Jas", "London");
 				for(int i = 0; i < 1000; i ++){
-					int index = donors.size();
-					Record rec =new Record(donors.get(r.nextInt(index)),Util.map.getRandCity().getName());
-					rec.blood = new Blood(r.nextInt(900) + 100, rec.donor, bm);
+					int index = Util.donors.size();
+					Record rec =new Record(Util.donors.get(r.nextInt(index)),Util.map.getRandCity().getName());
+					rec.blood = new Blood(r.nextInt(900) + 100, rec.donor, Util.batmobile);
+					rec.blood.hospital = Util.hospital;
 					rec.state = r.nextInt(4);
 					Util.records.add(rec);
 				}
+				
+				MainWindow game = new MainWindow();
+				game.setVisible(true);
+
+
 			};
 		});};
 

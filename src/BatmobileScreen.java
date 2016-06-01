@@ -4,5 +4,5 @@ import javax.*;
 import javax.swing.*;
 
 public class BatmobileScreen extends JPanel{
-
+  
 }

@@ -101,7 +101,6 @@ public class TripPlanner {
 				int gCost = currState.getGCost() + currCity.getTransferTime() + neighboursMap.get(neighbour);
 				Trip trip = new Trip(currCity, neighbour);
 				List<Trip> remainingTrips = new LinkedList<Trip>(currState.getRemainingTrips());
-				remainingTrips.remove(trip); // remove the trip from remainingTrips if possible
 
 				State childState = new State(currState, remainingTrips, trip, gCost);
 			}
