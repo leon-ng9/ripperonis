@@ -225,7 +225,7 @@ public class HospitalScreen extends JPanel {
 				int amount = Integer.parseInt(amountField.getText());
 				List<Record> bloods = hospital.requestBlood(amount, (String) userTypeCB.getSelectedItem());
 				if(bloods == null){
-					JOptionPane.showMessageDialog(null, "My Goodness, this is so bad, we don't have this type of blood!!!");
+					JOptionPane.showMessageDialog(null, "Supply of this blood is low and cannot be requested");
 				}else{
 					resultPan.removeAll();
 					for(Record b: bloods){
