@@ -11,10 +11,6 @@ public class Hospital {
 	public Hospital(String name){
 		this.name = name;
 		this.bloods = new ArrayList<Blood>();
-		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
-		// add(new Record(new Donor("Leon", "password", "Male", "AB-", 1996, "0400000000"), "London"));
 	}
 
 	public void add(Record r){
@@ -91,9 +87,12 @@ public class Hospital {
 			i ++;
 		}
 		if(amount > 0){
-			System.out.println("DS");
 			return null;
 		}else{
+		    for(Record r: result)
+		    {
+		        r.state = 3;
+		    }
 			return result;
 		}
 	}

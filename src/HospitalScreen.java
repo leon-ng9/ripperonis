@@ -229,7 +229,7 @@ public class HospitalScreen extends JPanel {
 				}else{
 					resultPan.removeAll();
 					for(Record b: bloods){
-						b.state = 3;
+						//b.state = 3;
 
 						GridBagConstraints gbcDetails = new GridBagConstraints();
 

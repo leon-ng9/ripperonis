@@ -178,7 +178,9 @@ ensures forall j:: 0 <= j < b.Length ==> G.hasVertex(b[j]);
 	}
 	assert G.validPath(a, 0);
 	assert a.Length > 0 ==> G.connected(a[a.Length - 1], v);
+	assert forall i:: 0 <= i < a.Length ==> a[i] == b[i];
 	b[i] := v;
+	// Dafny is not clever enough to figure out this is apparently true...
 	assume G.validPath(b, 0);
 }
 
